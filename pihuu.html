@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Place for Pihu 💗</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:"Trebuchet MS",sans-serif;
+  min-height:100vh; overflow-x:hidden;
+  background:linear-gradient(135deg,#ffe7f1,#eee7ff,#e1f5ff);
+  color:#57364b; text-align:center;
+}
+.card{
+  width:min(92%,680px); margin:45px auto; padding:34px 25px;
+  background:rgba(255,255,255,.72); backdrop-filter:blur(10px);
+  border-radius:30px; box-shadow:0 15px 45px rgba(100,60,100,.16);
+  position:relative;
+}
+h1{font-size:clamp(32px,7vw,55px);margin:8px 0;color:#d05b91}
+h2{color:#9a5c87}
+p{font-size:18px;line-height:1.7}
+button{
+  border:0; border-radius:999px; padding:13px 21px; margin:7px;
+  background:#fff; color:#8e4f78; font-size:16px; cursor:pointer;
+  box-shadow:0 6px 15px rgba(100,60,100,.12);
+  transition:.2s;
+}
+button:hover{transform:translateY(-3px) scale(1.02)}
+.hidden{display:none}
+.message{
+  margin:22px auto; padding:22px; border-radius:22px;
+  background:#fff7fb; font-size:17px; line-height:1.7;
+}
+.heart{font-size:35px;animation:float 2.5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.confetti{position:fixed;top:-20px;font-size:20px;animation:fall 4s linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+.small{font-size:14px;opacity:.75}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="heart">🎀💗🎀</div>
+  <h1>For Pihuuu</h1>
+  <p>My Sweetuuu, this little corner is just for you. 🥹💗</p>
+
+  <div id="home">
+    <button onclick="show('msg')">💌 A message for you</button>
+    <button onclick="show('things')">🫶🏻 Why you're special</button>
+    <button onclick="show('choose')">🎀 Choose one</button>
+    <button onclick="show('wish')">🌷 One wish for us</button>
+  </div>
+
+  <div id="msg" class="hidden message">
+    Happy Birthday meri Sweetuuu Pihuuu! 🎂💗<br><br>
+    Tu sach mein bohot sweet, caring aur helpful hai. 🥹
+    Teri jaisi genuinely achi person milna itself is something special.
+    I hope teri life hamesha happiness, smiles aur beautiful moments se full rahe. 🎀
+    <br><br>
+    <button onclick="home()">← Back</button>
+  </div>
+
+  <div id="things" class="hidden message">
+    <h2>Things that make you, YOU 💗</h2>
+    <p>🌷 Sweet<br>🫶🏻 Helpful<br>🎀 Caring<br>✨ Understanding<br>💗 And simply… Pihuuu!</p>
+    <p>Never feel like you have to change yourself to be special. You already are. 🥹</p>
+    <button onclick="home()">← Back</button>
+  </div>
+
+  <div id="choose" class="hidden message">
+    <h2>Okay Sweetuuu, choose one 👀</h2>
+    <button onclick="choice('hug')">🫂 Virtual hug</button>
+    <button onclick="choice('talk')">💬 Endless talks</button>
+    <button onclick="choice('memories')">📸 Future memories</button>
+    <p id="choiceText"></p>
+    <button onclick="home()">← Back</button>
+  </div>
+
+  <div id="wish" class="hidden message">
+    <h2>My little wish 🌷</h2>
+    <p>
+      Hum abhi tak kabhi actually mile nahi hain, but I genuinely hope ki ek din
+      hum zaroor mil sakein. 🥹💗 Phir saari online baatein real-life memories
+      ban jayengi. Until then, keep smiling, Sweetuuu. 🫂🎀
+    </p>
+    <p><b>One day… we'll meet. ✨</b></p>
+    <button onclick="home()">← Back</button>
+  </div>
+
+  <div id="end" style="margin-top:25px">
+    <button onclick="surprise()">🎂 One last surprise</button>
+    <p class="small">made with love for Pihu 🎀</p>
+  </div>
+</div>
+
+<script>
+function hideAll(){
+  ["msg","things","choose","wish"].forEach(id=>document.getElementById(id).classList.add("hidden"));
+  document.getElementById("home").classList.remove("hidden");
+}
+function show(id){
+  hideAll();
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("end").style.display="none";
+  document.getElementById(id).classList.remove("hidden");
+}
+function home(){
+  hideAll();
+  document.getElementById("end").style.display="block";
+}
+function choice(x){
+  const t={
+    hug:"Awww 🥹🫂 virtual hug accepted! Sending the biggest oneee 💗",
+    talk:"Then get ready for ENDLESS talks, Sweetuuu 💬🎀",
+    memories:"This one is my favourite… because I really hope we make them someday. 🥹📸💗"
+  };
+  document.getElementById("choiceText").innerHTML=t[x];
+}
+function surprise(){
+  for(let i=0;i<45;i++){
+    let e=document.createElement("div"); e.className="confetti";
+    e.textContent=["💗","🎀","✨","🌷","🫶🏻"][Math.floor(Math.random()*5)];
+    e.style.left=Math.random()*100+"vw";
+    e.style.animationDelay=Math.random()*1.5+"s";
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),5000);
+  }
+  alert("Happiest Birthday, Pihuuu! 🎂💗 You are special. Never forget that. 🎀");
+}
+</script>
+</body>
+</html>
